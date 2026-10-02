@@ -1,5 +1,48 @@
-# Company-Bankruptcy-Judgment-Summary-Query-System
-This project automatically crawls the Taiwan Judicial Yuan's judgment inquiry system for "corporate bankruptcy" related judgments, summarizes them using Gemini AI, and ultimately provides interactive web search and download capabilities.
+# Corporate Bankruptcy Judgment Summary & Query System
+
+An automated pipeline that scrapes corporate bankruptcy rulings from the Taiwan Judicial Yuan's judgment search system, generates concise key takeaways using Gemini AI, and presents them through an interactive web interface with search and export capabilities.
+
+## Key Features
+- **Automated Scraping**: Crawls all corporate bankruptcy judgments (case type: "破") in Taiwan since 2015.
+- **Entity Verification**: Automatically identifies whether the applicant is a registered corporate entity.
+- **AI-Powered Summarization**: Utilizes Gemini AI to synthesize complex legal judgments into 3-bullet-point summaries.
+- **Resilient Execution**: Supports checkpointing (resume from breakpoint) and automatic retry handling for API quota limits.
+- **Interactive UI**: Built with Streamlit for intuitive keyword filtering and CSV exporting.
+- **Direct Referencing**: Every judgment record includes active, clickable hyperlinks to the official court records.
+
+## Project Structure
+- `scraper2.py`: Scrapes and extracts judgment links for "破" (bankruptcy) cases.
+- `batch_summary.py`: Handles batch downloading, field extraction, Gemini AI summarization, and CSV generation.
+- `app.py`: Streamlit-based frontend search dashboard.
+- `公司破產判決摘要.csv`: Final output dataset containing processed judgments and AI summaries.
+- `破字_判決連結.csv`: Raw scraped dataset of all relevant judgment links.
+
+## Quick Start
+1. Ensure **Python 3.8+** is installed. Using a virtual environment (`venv` or `conda`) is recommended.
+2. Install dependencies:
+   ```sh
+   pip install -r requirements.txt
+   ```
+3. Run the scraper to gather judgment URLs:
+   ```sh
+   python scraper2.py
+   ```
+4. Run the batch pipeline to process text, generate AI summaries, and export data:
+   ```sh
+   python batch_summary.py
+   ```
+5. Launch the Streamlit dashboard:
+   ```sh
+   streamlit run app.py
+   ```
+
+## Notes & Disclaimers
+* **Academic & Non-Commercial Use**: This project is built strictly for research, educational, and information retrieval purposes.
+* **Data Source**: Original legal records are retrieved from the [Taiwan Judicial Yuan Law and Regulations Retrieving System](https://judgment.judicial.gov.tw/FJUD/default.aspx).
+* **API Key Required**: Requires a valid Google Gemini API Key. Please configure your key within the application script or `.env` file before running.
+
+## Author
+Hank Chang
 
 # 公司破產判決摘要查詢系統
 
